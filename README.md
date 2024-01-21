@@ -49,7 +49,10 @@ Launch the scraper by executing the `scrapper.py` script as displayed below:
 python path/to/scrapper.py
 ```
 
-Upon completion of execution, observe snapshots displaying Sample\_1 and Sample\_2 showcases.
+Upon completion of execution, observe snapshots displaying.
+![Sample_01](https://github.com/prashanth-githubuser/TShirt-Image-Data-Harvesting/assets/120344718/b9edf0eb-7b43-4d95-ba86-584d9f22e17b)
+![Sample-02](https://github.com/prashanth-githubuser/TShirt-Image-Data-Harvesting/assets/120344718/04a76e7b-7a81-44b2-bc9d-079a4f0bb824)
+
 
 ## Output Format
 
