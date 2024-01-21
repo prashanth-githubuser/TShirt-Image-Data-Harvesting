@@ -82,7 +82,12 @@ An instance of this convention could appear like this:
 
 This signifies that the scraper managed to extract titles from the first 50 pages but encountered issues afterward, leading to its stoppage.
 
-When handling interrupted sessions, you need to take note of both the current page numbers and the checkpoints mentioned in the filenames. Merge the fragments based on consistent column structures, ensuring no duplicates exist, resulting in a complete dataset containing all scraped records.
+When handling interrupted sessions, you need to take note of both the current page numbers and the checkpoints mentioned in the filenames. Merge the fragments based on consistent column structures, ensuring no duplicates exist, resulting in a complete dataset containing all scraped records.  
+
+## ⚠️ Important Note Don't try to intract with opend webrowser, it will leads to crash by stating as follows:  
+```perl
+An error occurred: Message: element click intercepted:
+```
 
 ## Recovering From Interruptions
 
