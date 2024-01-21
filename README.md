@@ -53,35 +53,58 @@ Upon completion of execution, observe snapshots displaying Sample\_1 and Sample\
 
 ## Output Format
 
-For each specified time interval, the accumulated information is archived under a uniquely named CSV filename structured as illustrated:
+ Based on the provided naming conventions for the generated CSV files, there seem to be two types of filenames used depending upon the content stored within the respective files. Let's understand what they represent:
 
-```
-tshirt_{date}_pg{page_number}_cp{check_point}.csv
-title_{date}_PageNo_{last_processed_page}.csv
-```
+**First Filename Convention:**
+
+* `tshirt_{date}_pg{page_number}_cp{check_point}.csv`
+	+ `tshirt_` - Denotes the type of items being scraped (T-shirts).
+	+ `{date}` - Represents the date when the data was scraped.
+	+ `pg{page_number}` - Indicates which page the scraper had reached.
+	+ `cp{check_point}` - Shows the checkpoint where the scraper had completed processing.
+
+An example of this convention would be something like this:
+
+* `tshirt_2023-03-21_pg50_cp2500.csv`
+
+This indicates that the scraper successfully processed the first 50 pages until reaching the checkpoint at 2500 before encountering an issue or requiring manual intervention.
+
+**Second Filename Convention:**
+
+* `title_{date}_PageNo_{last_processed_page}.csv`
+	+ `title_` - Signifies the nature of the contents inside the file (titles of products).
+	+ `{date}` - Represents the date when the data was scraped.
+	+ `PageNo_{last_processed_page}` - Demonstrates which page contained the last successful record before termination.
+
+An instance of this convention could appear like this:
+
+* `title_2023-03-21_PageNo_50.csv`
+
+This signifies that the scraper managed to extract titles from the first 50 pages but encountered issues afterward, leading to its stoppage.
+
+When handling interrupted sessions, you need to take note of both the current page numbers and the checkpoints mentioned in the filenames. Merge the fragments based on consistent column structures, ensuring no duplicates exist, resulting in a complete dataset containing all scraped records.
 
 ## Recovering From Interruptions
 
-Should the web scraper experience an abrupt halt prior to accomplishing designated objectives, jot down the final productively handled page number. Thereafter, update the script to proceed with gathering residual information beginning from the subsequent untouched page pursuant to the documented checkpoint. Ultimately, merge fragmented data acquired throughout disparate instances into a coherent conclusive compilation.
+ To recover from interruptions and resume the scraper after it has stopped at a certain point, here are some simplified steps to follow:
 
-## Resumption Process
+1. Identify the last processed page number before the interruption occurred. In the given example, let's assume the scraper stopped at page 50 (pg50).
+2. Update the `ScraperConfig` class definition in the `configuration.py` file. Change the value of the `page_from` parameter to start collecting data from the next unvisited page. In this case, change `page_from: int = 1` to `page_from: int = 51`. The updated code should look like this:
+   ```python
+   @dataclass
+   class ScraperConfig:
+       '''URL Works only for myntra.com domain'''
+       
+       URL = "https://www.myntra.com/men-tshirts"
+       page_from: int = 51  # Changed this value
+       page_to: int = 1000
+       check_point: int = 500
+       csv_location: str = r'D:\Python\Test\selenium\artifacts'
+   ```
+3. After updating the configuration, re-run the `scrapper.py` file to collect the remaining data starting from the updated page number.
+4. When merging the data from different instances, ensure consistency in column names and order. If needed, process the individual CSV files first to standardize the structure before combining them into a single comprehensive dataset.
 
-Assume the scenario wherein the scraper ceases operation at `pg50_cp_2500`, undertake remediation steps as demonstrated below:
-
-```python
-# configuration.py
-from dataclasses import dataclass
-
-@dataclass
-class ScraperConfig:
-    '''URL Works only for myntra.com domain'''
-    
-    URL = "https://www.myntra.com/men-tshirts"
-    page_from: int = 51
-    page_to: int = 1000
-    check_point: int = 500
-    csv_location: str = r'D:\Python\Test\selenium\artifacts'
-```
+By following these simple steps, you can efficiently handle unexpected interruptions during the scraping process and continue the collection seamlessly. Just remember to document the stopping point and adjust the configuration accordingly before restarting the scraper.
 
 ## Ethical Considerations
 
