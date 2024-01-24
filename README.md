@@ -11,6 +11,10 @@ This Python-based web scraper targets Myntra's men's t-shirts section and naviga
 The project folder hierarchy appears as follows:
 
     project_root/
+    ├── artifacts/
+    │   ├── images/ # contains .jpg files
+    │   └── metadata/ # contains raw .cvs files
+    │		└── cleaned_metadata/ # contains .cvs files
     ├── components/
     │   ├── scraper_pipeline.py
     │   └── streamlit_app.py
@@ -24,6 +28,8 @@ The project folder hierarchy appears as follows:
     │   └── analysis_helper.py
     │   └── cleaning_helper.py
     │   └── general_helper.py
+    ├── analyser.py
+    ├── extractor.py
     └── scrapper.py
 
 ## Setup
