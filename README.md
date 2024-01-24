@@ -1,4 +1,4 @@
- # TShirt-Image-Data-Harvesting
+
 
 The TShirt-Image-Data-Harvesting application employs web scraping techniques to amass images of T-shirts, thereby generating a versatile dataset for applications encompassing image analysis, machine learning, and e-commerce visualization.
 
@@ -20,6 +20,10 @@ The project folder hierarchy appears as follows:
     │   └── trial.ipynb
     ├── utils/
     │   └── web_scraper.py
+    │   └── analysis_cleaner.py
+    │   └── analysis_helper.py
+    │   └── cleaning_helper.py
+    │   └── general_helper.py
     └── scrapper.py
 
 ## Setup
@@ -58,7 +62,7 @@ Upon completion of execution, observe snapshots displaying.
 
  Based on the provided naming conventions for the generated CSV files, there seem to be two types of filenames used depending upon the content stored within the respective files. Let's understand what they represent:
 
-**First Filename Convention:**
+**First Metadata Filename Convention:**
 
 * `tshirt_{date}_pg{page_number}_cp{check_point}.csv`
 	+ `tshirt_` - Denotes the type of items being scraped (T-shirts).
@@ -81,7 +85,11 @@ This indicates that the scraper successfully processed the first 50 pages until 
 
 An instance of this convention could appear like this:
 
-* `title_2023-03-21_PageNo_50.csv`
+* `title_2023-03-21_PageNo_50.csv`  
+**Image file format**
+  * `pg{page_number}_cp{check_point}_{metadata_index_num}.jpg`
+    	+ `pg{page_number}_cp{check_point}` - Represents the metadata file name.
+    	+ `metadata_index_num` - Image index number in respective metadata file name.
 
 This signifies that the scraper managed to extract titles from the first 50 pages but encountered issues afterward, leading to its stoppage.
 
@@ -111,6 +119,23 @@ An error occurred: Message: element click intercepted:
    ```
 3. After updating the configuration, re-run the `scrapper.py` file to collect the remaining data starting from the updated page number.
 4. When merging the data from different instances, ensure consistency in column names and order. If needed, process the individual CSV files first to standardize the structure before combining them into a single comprehensive dataset.
+
+```perl
+python analysis.py
+```
+![Screenshot (118)](https://github.com/prashanth-githubuser/TShirt-Image-Data-Harvesting/assets/120344718/05e877c2-93b2-4877-acc5-a4c01bf94b38)
+
+![Screenshot (121)](https://github.com/prashanth-githubuser/TShirt-Image-Data-Harvesting/assets/120344718/428982d1-3e4b-463b-b5ea-dee5ba733347)
+
+![Screenshot (124)](https://github.com/prashanth-githubuser/TShirt-Image-Data-Harvesting/assets/120344718/86ec3d0e-a3c6-4c6c-b678-4e6844fb1498)
+
+```perl
+python extractor.py
+```
+![Screenshot (125)](https://github.com/prashanth-githubuser/TShirt-Image-Data-Harvesting/assets/120344718/117fbab6-6f84-417f-8889-52fe3cc19c2d)
+![Screenshot (125)](https://github.com/prashanth-githubuser/TShirt-Image-Data-Harvesting/assets/120344718/6bf757b2-541a-47b0-a433-73df33bfd8e7) # TShirt-Image-Data-Harvesting
+
+
 
 By following these simple steps, you can efficiently handle unexpected interruptions during the scraping process and continue the collection seamlessly. Just remember to document the stopping point and adjust the configuration accordingly before restarting the scraper.
 
