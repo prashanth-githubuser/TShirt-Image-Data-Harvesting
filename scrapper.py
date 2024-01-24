@@ -1,6 +1,6 @@
 from selenium.webdriver.common.by import By
 from utils.web_scrapper import Scrape_Data
-from config.configration import Scrapper_Config
+from config.configuration import Scrapper_Config
 
 
 
