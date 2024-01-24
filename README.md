@@ -1,4 +1,4 @@
-
+# TShirt-Image-Data-Harvesting
 
 The TShirt-Image-Data-Harvesting application employs web scraping techniques to amass images of T-shirts, thereby generating a versatile dataset for applications encompassing image analysis, machine learning, and e-commerce visualization.
 
@@ -92,7 +92,7 @@ This indicates that the scraper successfully processed the first 50 pages until 
 An instance of this convention could appear like this:
 
 * `title_2023-03-21_PageNo_50.csv`  
-**Image file format**
+**Image file format:**
   * `pg{page_number}_cp{check_point}_{metadata_index_num}.jpg`
     	+ `pg{page_number}_cp{check_point}` - Represents the metadata file name.
     	+ `metadata_index_num` - Image index number in respective metadata file name.
@@ -139,7 +139,7 @@ python analysis.py
 python extractor.py
 ```
 ![Screenshot (125)](https://github.com/prashanth-githubuser/TShirt-Image-Data-Harvesting/assets/120344718/117fbab6-6f84-417f-8889-52fe3cc19c2d)
-![Screenshot (125)](https://github.com/prashanth-githubuser/TShirt-Image-Data-Harvesting/assets/120344718/6bf757b2-541a-47b0-a433-73df33bfd8e7) # TShirt-Image-Data-Harvesting
+![Screenshot (125)](https://github.com/prashanth-githubuser/TShirt-Image-Data-Harvesting/assets/120344718/6bf757b2-541a-47b0-a433-73df33bfd8e7)
 
 
 
